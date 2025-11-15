@@ -48,7 +48,8 @@ Ela contém:
 - o layout principal do dashboard
 
 <p align="center">
-  <img src="./public/readme/platformpage.png" width="850">
+  <img src="./public/Captura de tela 2025-11-14 223800.png" width="850"><br><br>
+  <img src="./public/Captura de tela 2025-11-14 223717.png" width="850">
 </p>
 
 Essa página controla a navegação e renderização interna de:
@@ -255,7 +256,8 @@ web/app/login/page.tsx
 ```
 
 <p align="center">
-  <img src="./public/readme/login.png" width="400">
+  <img src="./public/Captura de tela 2025-11-15 004730.png" width="850"><br><br>
+  <img src="./public/Captura de tela 2025-11-15 004711.png" width="850">
 </p>
 
 ---
