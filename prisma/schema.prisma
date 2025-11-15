@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model device {
+  id         String       @id @default(uuid())
+  device_uid String       @unique
+  name       String
+  location   String
+  last_seen  DateTime?
+  status     devicestatus @default(active)
+  created_at DateTime     @default(now())
+  apiKeys    apikey[]
+  auditLogs  auditlog[]   @relation("DeviceAuditLogs")
+  sensors    sensor[]
+
+  @@map("devices")
+}
+
+model sensor {
+  id        String     @id @default(uuid())
+  device_id String
+  type      sensortype
+  unit      String
+  meta      Json?
+  readings  reading[]
+  device    device     @relation(fields: [device_id], references: [id])
+
+  @@map("sensors")
+}
+
+model reading {
+  id          BigInt   @id @default(autoincrement())
+  sensor_id   String
+  ts          DateTime
+  value_txt   String?
+  raw         Json?
+  ingested_at DateTime @default(now())
+  humidity    Float?
+  temperature Float?
+  sensor      sensor   @relation(fields: [sensor_id], references: [id])
+
+  @@index([ts])
+  @@map("readings")
+}
+
+model apikey {
+  id         String    @id @default(uuid())
+  device_id  String
+  key_hash   Bytes
+  created_at DateTime  @default(now())
+  expires_at DateTime?
+  revoked    Boolean   @default(false)
+  device     device    @relation(fields: [device_id], references: [id])
+
+  @@map("api_keys")
+}
+
+model auditlog {
+  id              BigInt   @id @default(autoincrement())
+  actor_device_id String?
+  action          String
+  target_type     String
+  target_id       String?
+  ip              String?
+  ts              DateTime
+  details         Json?
+  actorDevice     device?  @relation("DeviceAuditLogs", fields: [actor_device_id], references: [id])
+
+  @@map("audit_logs")
+}
+
+enum devicestatus {
+  active
+  inactive
+  blocked
+}
+
+enum sensortype {
+  temp
+  hum
+  press
+  custom
+}

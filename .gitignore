@@ -1,0 +1,74 @@
+# ====================================
+# Node.js (root + subprojetos)
+# ====================================
+node_modules/
+web/node_modules/
+
+# ====================================
+# Next.js build folders (dentro de /web)
+# ====================================
+web/.next/
+web/.turbo/
+web/.turbopack/
+web/dist/
+web/out/
+web/build/
+web/.vercel/
+
+# ====================================
+# Environment variables (NUNCA versionar)
+# ====================================
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+.env.*.local
+
+web/.env
+web/.env.local
+web/.env.development
+web/.env.production
+web/.env.test
+web/.env.*.local
+
+# ====================================
+# Prisma (SQLite e journals locais)
+# ====================================
+prisma/*.db
+prisma/*.db-journal
+
+# ====================================
+# Logs
+# ====================================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ====================================
+# Lockfiles (VOCÊ USA NPM)
+# ====================================
+pnpm-lock.yaml
+yarn.lock
+
+# ====================================
+# TypeScript
+# ====================================
+*.tsbuildinfo
+
+# ====================================
+# IDE / SO
+# ====================================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ====================================
+# Backups / arquivos temporários
+# ====================================
+*.bak
+*.old

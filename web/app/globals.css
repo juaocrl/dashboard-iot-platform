@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+/* Base (modo claro) */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+/* Fallback: usa o tema do sistema quando o usuário escolher "system" */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* >>> Controle por classe do next-themes (tem prioridade e sobrescreve o fallback) */
+html.light {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+html.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+/* Globais */
+html, body { height: 100%; }
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Utilitários para usar junto com Tailwind */
+@layer utilities {
+  .bg-background { background: var(--background); }
+  .text-foreground { color: var(--foreground); }
+}
